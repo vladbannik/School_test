@@ -99,3 +99,15 @@ export function removeTeacher(req: Express.Request, res: Express.Response) {
         });
 }
 
+export function getTargetMathTeachers() {
+    db.any("select t.id,t.name,t.surname,t.age,t.sex,t.yearsofexperience,t.workedinuniversities,t.canteachsubjects from teacher t" +
+        " join lesson l on l.teacherid=t.id join classroom c on c.id=l.classroomid, generate_series(startdate, finishdate, interval '7 days') as startDataTime" +
+        " where t.canteachsubjects ILIKE '%math%' and t.yearsofexperience>=10 and c.location='100' " +
+        "and EXTRACT(isodow  FROM startDataTime)=4 and startDataTime::time>='8:30'::time  and (startDataTime+l.lessonlength)::time<='14:30'::time group by t.id ")
+        .then((data: any) => {
+            console.log(data)
+        })
+        .catch((err: any) => {
+            console.log(err)
+        });
+}
