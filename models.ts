@@ -11,9 +11,12 @@ export interface Teacher {
 export interface Lesson {
     id: number,
     name: string,
-    teacher: number,
+    teacherid: number,
     subject: Subject,
-    classRoom: Classroom
+    classRoomId: Classroom,
+    startDate: string,
+    finishDate: string,
+    lessonLength: string
 }
 export interface Classroom {
     id: number,
