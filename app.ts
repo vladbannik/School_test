@@ -6,7 +6,7 @@ const app: Express.Application = Express();
 app.use(Express.urlencoded({ extended: true }));
 app.use(Express.json());
 
-app.get('/teacher', getAllTeacher)
+app.get('/teachers', getAllTeacher)
 app.get('/teacher/:queryFilter', getTeacher)
 app.post('/addTeacher', addTeacher)
 app.patch('/updateTeacher/:id', updateTeacher)

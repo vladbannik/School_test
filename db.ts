@@ -1,13 +1,16 @@
 import { Sex, Teacher } from "./models";
 import Express from 'express';
+import dotenv from 'dotenv'
 const pgp = require("pg-promise")(/*options*/);
 
+dotenv.config()
+
 const cn = {
-    host: 'localhost', // server name or IP address;
-    port: 5432,
-    database: 'School',
-    user: 'postgres',
-    password: '12345'
+    host: process.env.HOST, // server name or IP address;
+    port: process.env.PORT,
+    database: process.env.DATABASE,
+    user: process.env.USER,
+    password: process.env.PASSWORLD
 };
 const db = pgp(cn);
 
